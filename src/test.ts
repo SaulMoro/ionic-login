@@ -2,24 +2,31 @@
 
 import 'zone.js/dist/zone-testing';
 import { getTestBed } from '@angular/core/testing';
-import {
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting
-} from '@angular/platform-browser-dynamic/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+import { ɵDomSharedStylesHost } from '@angular/platform-browser';
+import JasmineDOM from '@testing-library/jasmine-dom/dist';
 
 declare const require: {
-  context(path: string, deep?: boolean, filter?: RegExp): {
+  context(
+    path: string,
+    deep?: boolean,
+    filter?: RegExp,
+  ): {
     keys(): string[];
     <T>(id: string): T;
   };
 };
 
 // First, initialize the Angular testing environment.
-getTestBed().initTestEnvironment(
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting()
-);
+getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
 // Then we find all the tests.
 const context = require.context('./', true, /\.spec\.ts$/);
 // And load the modules.
 context.keys().map(context);
+
+// Patch to ensure SharedStylesHost cleanup styles between Karma test specs
+// https://github.com/angular/angular/issues/31834
+afterEach(() => getTestBed().inject(ɵDomSharedStylesHost).ngOnDestroy());
+
+// Add Testing Library Jasmine DOM Matchers
+beforeAll(() => jasmine.getEnv().addMatchers(JasmineDOM));
