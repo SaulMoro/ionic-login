@@ -1,0 +1,7 @@
+{
+  "name": "ionic-picsum",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
