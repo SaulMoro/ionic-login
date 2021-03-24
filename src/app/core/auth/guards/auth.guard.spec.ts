@@ -1,4 +1,6 @@
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 
 import { selectAuthenticated } from '../+state/auth.selectors';
@@ -6,13 +8,13 @@ import { AuthGuard } from './auth.guard';
 
 describe('AuthGuard', () => {
   it('should be created', () => {
-    const guard = setup();
+    const { guard } = setup();
 
     expect(guard).toBeTruthy();
   });
 
   it('should can Activate if is authenticated', async (done) => {
-    const guard = setup(true);
+    const { guard } = setup(true);
 
     guard.canActivate().subscribe((canActivate) => {
       expect(canActivate).toBe(true);
@@ -21,17 +23,17 @@ describe('AuthGuard', () => {
   });
 
   it('should cant Activate if not authenticated', async (done) => {
-    const guard = setup(false);
-
+    const { guard } = setup(false);
     guard.canActivate().subscribe((canActivate) => {
-      expect(canActivate).toBe(false);
+      expect(canActivate).not.toBe(true);
       done();
     });
   });
 });
 
-export const setup = (authenticated = false): AuthGuard => {
+export const setup = (authenticated = false) => {
   TestBed.configureTestingModule({
+    imports: [RouterTestingModule],
     providers: [
       provideMockStore({
         selectors: [
@@ -44,5 +46,8 @@ export const setup = (authenticated = false): AuthGuard => {
     ],
   });
 
-  return TestBed.inject(AuthGuard);
+  const guard = TestBed.inject(AuthGuard);
+  const router = TestBed.inject(Router);
+
+  return { guard, router };
 };
