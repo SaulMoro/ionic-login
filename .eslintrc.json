@@ -26,9 +26,10 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
-        "plugin:rxjs/recommended"
+        "plugin:rxjs/recommended",
+        "plugin:ngrx/recommended"
       ],
-      "plugins": ["@typescript-eslint", "prettier", "rxjs"],
+      "plugins": ["@typescript-eslint", "prettier", "rxjs", "ngrx"],
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
@@ -66,7 +67,10 @@
           }
         ],
         "rxjs/no-cyclic-action": "off",
-        "rxjs/no-unsafe-switchmap": "error"
+        "rxjs/no-unsafe-switchmap": "error",
+        "ngrx/select-style": "error",
+        "ngrx/no-reducer-in-key-names": "off",
+        "ngrx/on-function-explicit-return-type": "off"
       }
     },
     {

@@ -6,6 +6,9 @@ module.exports = {
   darkMode: 'media', // or false or 'class'
   theme: {
     extend: {
+      screens: {
+        lg: '960px',
+      },
       colors: {
         primary: {
           default: 'var(--ion-color-primary)',
