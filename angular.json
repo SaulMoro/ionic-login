@@ -186,6 +186,10 @@
     "defaultCollection": "@ionic/angular-toolkit"
   },
   "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush"
+    },
     "@ionic/angular-toolkit:component": {
       "styleext": "scss"
     },
