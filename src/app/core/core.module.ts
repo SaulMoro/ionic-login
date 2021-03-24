@@ -34,6 +34,7 @@ export function httpLoaderFactory(http: HttpClient): TranslateHttpLoader {
       },
     }),
   ],
+  exports: [IonicModule],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
