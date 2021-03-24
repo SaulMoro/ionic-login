@@ -84,7 +84,11 @@
     {
       "files": ["**/*.{spec,test}.ts"],
       "extends": ["plugin:jasmine/recommended", "plugin:testing-library/angular"],
-      "plugins": ["jasmine"]
+      "plugins": ["@typescript-eslint", "jasmine"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
     }
   ]
 }
