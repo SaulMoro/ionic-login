@@ -1,11 +1,12 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { environment } from '@environments/environment';
 import { CoreStoreModule } from './core.state';
+import { AuthTokenInterceptor } from './auth';
 
 // AoT requires an exported function for factories
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
@@ -35,6 +36,7 @@ export function httpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     }),
   ],
   exports: [IonicModule],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
