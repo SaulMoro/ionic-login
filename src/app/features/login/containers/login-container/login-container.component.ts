@@ -35,7 +35,9 @@ export class LoginContainerComponent implements OnInit {
   }
 
   login(credentials: Credentials): void {
-    console.log(credentials);
+    if (this.form.valid) {
+      this.store.dispatch(AuthActions.login({ credentials }));
+    }
   }
 
   get email(): FormControl {

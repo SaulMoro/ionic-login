@@ -6,11 +6,15 @@
   }
 
   .login-input__icon {
-    @apply text-2xl font-medium hover:text-gray-500;
+    @apply text-2xl font-medium hover:text-gray-700;
   }
 
   input {
-    @apply w-full font-medium text-gray-700 placeholder-gray-800 placeholder-opacity-50 bg-transparent appearance-none focus:outline-none;
+    @apply w-full text-gray-700 placeholder-gray-800 placeholder-opacity-50 bg-transparent appearance-none focus:outline-none;
+
+    &:disabled {
+      @apply opacity-50;
+    }
   }
 }
 

@@ -5,7 +5,7 @@ import { routerReducer, RouterReducerState, RouterState, StoreRouterConnectingMo
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { environment } from '@environments/environment';
-import { authReducer, AuthState, AUTH_FEATURE_KEY, localstorageAuthMetaReducer } from './auth';
+import { AuthEffects, authReducer, AuthState, AUTH_FEATURE_KEY, localstorageAuthMetaReducer } from './auth';
 
 export interface RootState {
   router: RouterReducerState;
@@ -26,7 +26,7 @@ export const reducers: ActionReducerMap<RootState> = {
       },
       metaReducers: [localstorageAuthMetaReducer],
     }),
-    EffectsModule.forRoot(),
+    EffectsModule.forRoot([AuthEffects]),
     StoreRouterConnectingModule.forRoot({ routerState: RouterState.Minimal }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
