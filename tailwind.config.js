@@ -3,7 +3,7 @@ module.exports = {
     enabled: process.env.WEBPACK_DEV_SERVER === 'true' && process.argv.join(' ').indexOf('build') !== -1,
     content: ['./src/**/*.{html,ts}'],
   },
-  darkMode: 'media', // or false or 'class'
+  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
       screens: {
@@ -93,6 +93,8 @@ module.exports = {
       opacity: ['disabled'],
       cursor: ['disabled'],
       borderWidth: ['hover', 'group-hover'],
+      backgroundColor: ['checked'],
+      inset: ['checked'],
     },
   },
   plugins: [],

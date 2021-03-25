@@ -1,0 +1,4 @@
+<label *ngIf="control" class="login-input group" [class.login-input--invalid]="control.invalid && control.touched">
+  <ion-icon *ngIf="icon" class="login-input__icon" [name]="icon"></ion-icon>
+  <input [type]="type" [formControl]="control" [placeholder]="label" />
+</label>

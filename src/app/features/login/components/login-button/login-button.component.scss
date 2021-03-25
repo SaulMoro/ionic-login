@@ -1,0 +1,7 @@
+.login--button {
+  @apply flex items-center justify-center w-full;
+
+  @media (min-width: 960px) {
+    @apply w-auto py-2 mx-auto text-gray-900 border-2 rounded-3xl border-primary-default bg-primary-contrast hover:bg-primary-tint focus:bg-primary-tint hover:text-primary-contrast focus:text-primary-contrast;
+  }
+}

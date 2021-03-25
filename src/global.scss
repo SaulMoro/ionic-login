@@ -39,3 +39,8 @@
 @import 'tailwindcss/utilities';
 
 @import 'theme/tags';
+
+/* custom components purgable */
+@layer components {
+  @import 'theme/buttons';
+}

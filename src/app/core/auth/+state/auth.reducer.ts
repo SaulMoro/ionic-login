@@ -1,4 +1,7 @@
-import { createReducer, on } from '@ngrx/store';
+import { ActionReducer, createReducer, on } from '@ngrx/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
+import { RootState } from '@app/core/core.state';
 import * as AuthActions from './auth.actions';
 import { User } from '../models';
 
@@ -48,3 +51,13 @@ export const authReducer = createReducer(
     loading: false,
   })),
 );
+
+export const localstorageAuthMetaReducer = (reducer: ActionReducer<RootState>): ActionReducer<RootState> =>
+  localStorageSync({
+    keys: [AUTH_FEATURE_KEY],
+    rehydrate: true,
+    removeOnUndefined: true,
+    storageKeySerializer: (key) => `IL_${key}`,
+    // Only persists if "remember me" in login
+    syncCondition: (state: RootState) => state.auth.remember,
+  })(reducer);

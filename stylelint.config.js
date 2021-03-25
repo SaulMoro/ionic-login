@@ -5,13 +5,33 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'extend', '/^layer/'],
+        ignoreAtRules: [
+          'tailwind',
+          'apply',
+          'variants',
+          'responsive',
+          'screen',
+          'extend',
+          '/^layer/',
+          '/^mixin/',
+          '/^include/',
+        ],
       },
     ],
     'scss/at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'extend', '/^layer/'],
+        ignoreAtRules: [
+          'tailwind',
+          'apply',
+          'variants',
+          'responsive',
+          'screen',
+          'extend',
+          '/^layer/',
+          '/^mixin/',
+          '/^include/',
+        ],
       },
     ],
     'no-empty-source': null,

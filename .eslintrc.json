@@ -87,7 +87,9 @@
       "plugins": ["@typescript-eslint", "jasmine"],
       "rules": {
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "jasmine/no-unsafe-spy": "off",
+        "jasmine/new-line-before-expect": "off"
       }
     }
   ]
