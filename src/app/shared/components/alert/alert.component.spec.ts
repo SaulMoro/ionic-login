@@ -1,24 +1,47 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 
 import { AlertComponent } from './alert.component';
 
 describe('AlertComponent', () => {
-  let component: AlertComponent;
-  let fixture: ComponentFixture<AlertComponent>;
+  it('should show info messages', async () => {
+    const { rerender } = await render(AlertComponent, {
+      componentProperties: { messages: 'Test' },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [AlertComponent],
-    }).compileComponents();
+    expect(screen.getByText('Info')).toBeInTheDocument();
+    expect(screen.getByText('Test')).toBeInTheDocument();
+
+    rerender({ messages: ['Test', 'Test2'] });
+
+    expect(screen.getByText('Test')).toBeInTheDocument();
+    expect(screen.getByText('Test2')).toBeInTheDocument();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AlertComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  it('should show success messages', async () => {
+    const { rerender } = await render(AlertComponent, {
+      componentProperties: { messages: 'Test', type: 'success' },
+    });
+
+    expect(screen.getByText('Operación finalizada satisfactoriamente')).toBeInTheDocument();
+    expect(screen.getByText('Test')).toBeInTheDocument();
+
+    rerender({ messages: ['Test', 'Test2'] });
+
+    expect(screen.getByText('Test')).toBeInTheDocument();
+    expect(screen.getByText('Test2')).toBeInTheDocument();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should show error messages', async () => {
+    const { rerender } = await render(AlertComponent, {
+      componentProperties: { messages: 'Test', type: 'error' },
+    });
+
+    expect(screen.getByText('Error')).toBeInTheDocument();
+    expect(screen.getByText('Test')).toBeInTheDocument();
+
+    rerender({ messages: ['Test', 'Test2'] });
+
+    expect(screen.getByText('Test')).toBeInTheDocument();
+    expect(screen.getByText('Test2')).toBeInTheDocument();
   });
 });
