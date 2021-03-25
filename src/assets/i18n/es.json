@@ -1,34 +1,24 @@
 {
   "APP_TITLE": "PoC Ionic Login",
   "LANGUAGE": "Español",
-  "LOGIN": {},
-  "BUTTONS": {
-    "ACCEPT_DEFAULT": "Aceptar",
-    "CANCEL_DEFAULT": "Cancelar",
-    "CLOSE_DEFAULT": "Cerrar",
-    "SEND": "Enviar",
-    "NEXT": "Siguiente",
-    "BACK": "Volver",
-    "CONFIRM": "Confirmar",
-    "CONTINUE": "Continuar"
+  "LOGIN": {
+    "TEST_CASE": "Prueba técnica",
+    "FIELDS": {
+      "EMAIL": "Email",
+      "PASSWORD": "Contraseña",
+      "REMEMBER": "Recordar"
+    },
+    "BUTTONS": {
+      "ENTER": "Acceder"
+    },
+    "ERRORS": {
+      "BAD_CREDENTIALS": "Las credenciales introducidas no son correctas"
+    }
   },
   "VALIDATIONS": {
-    "MIN_LENGTH_NOT_TEXT": "Este campo debe tener al menos {{number}} caracteres númericos.",
-    "MIN_LENGTH": "Este campo debe tener al menos {{number}} caracteres",
-    "MAX_LENGTH": "Este campo debe ser menor de {{number}} caracteres",
-    "MIN": "Este campo debe ser mayor que {{number}}",
-    "MAX": "Este campo debe ser menor que {{number}}",
-    "MIN_OR_EQUALS": "Este campo debe ser mayor o igual que {{number}}",
-    "MAX_OR_EQUALS": "Este campo debe ser menor o igual que {{number}}",
-    "RANGE": "Este campo debe ser mayor o igual que {{min}} y menor o igual que {{max}}",
-    "MIN_DATE": "La fecha debe ser mayor que la {{otherDate}}",
-    "MAX_DATE": "La fecha debe ser menor que la {{otherDate}}",
-    "REQUIRED": "Este campo es obligatorio",
-    "EMAIL": "La dirección de correo electrónico no es válida",
-    "PATTERN": "Este campo debe de cumplir el formato especificado",
-    "PHONE": "El teléfono no es válido",
-    "DNI": "El DNI no es válido",
-    "SPANISH_ID": "El documento de identidad no es válido"
+    "REQUIRED": "El campo {{name}} es obligatorio",
+    "MIN_LENGTH": "El campo {{name}} debe tener al menos {{min}} caracteres",
+    "EMAIL": "La dirección de correo electrónico no es válida"
   },
   "ERRORS": {
     "SUCCESS": "Operación finalizada satisfactoriamente",

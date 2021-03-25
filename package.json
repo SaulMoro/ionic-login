@@ -91,6 +91,7 @@
     "karma-jasmine": "~4.0.1",
     "karma-jasmine-html-reporter": "^1.5.4",
     "lint-staged": "^10.5.4",
+    "ngx-translate-testing": "^5.1.0",
     "prettier": "^2.2.1",
     "stylelint": "^13.12.0",
     "stylelint-config-prettier": "^8.0.2",

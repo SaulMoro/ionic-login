@@ -1,1 +1,16 @@
-<p>login-container works!</p>
+<ion-content fullscreen class="login-container">
+  <section class="flex flex-col items-center px-6 py-12 space-y-10">
+    <ion-img class="w-48" src="assets/imgs/logo.jpg"></ion-img>
+
+    <form class="w-full bg-white" name="loginForm" [formGroup]="form" (ngSubmit)="login(form.value)">
+      <fieldset class="py-4 space-y-2">
+        <p>{{ 'LOGIN.FIELDS.EMAIL' | translate }}</p>
+        <p>{{ 'LOGIN.FIELDS.PASSWORD' | translate }}</p>
+        <app-login-toggle [control]="remember" [label]="'LOGIN.FIELDS.REMEMBER' | translate"></app-login-toggle>
+      </fieldset>
+      <button type="submit" class="w-full btn btn-primary" [disabled]="loading$ | async">
+        {{ 'LOGIN.BUTTONS.ENTER' | translate }}
+      </button>
+    </form>
+  </section>
+</ion-content>
