@@ -4,6 +4,12 @@ PoC Ionic Login
 
 [Demo of project](https://poc-ionic-login.firebaseapp.com/)
 
+## Login Demo Data
+
+Client User: `email:test@test.com | pass:(any password)`
+
+VIP User: `email:vip@vip.com | pass:(any password)`
+
 ## Table of Contents
 
 - [Quick Start](#quick-start)

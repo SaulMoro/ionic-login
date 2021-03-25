@@ -5,6 +5,11 @@ import { getTestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { ɵDomSharedStylesHost } from '@angular/platform-browser';
 import JasmineDOM from '@testing-library/jasmine-dom/dist';
+import { configure } from '@testing-library/angular';
+import { TranslateTestingModule } from 'ngx-translate-testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import defaultTranslations from 'src/assets/i18n/es.json';
 
 declare const require: {
   context(
@@ -30,3 +35,11 @@ afterEach(() => getTestBed().inject(ɵDomSharedStylesHost).ngOnDestroy());
 
 // Add Testing Library Jasmine DOM Matchers
 beforeAll(() => jasmine.getEnv().addMatchers(JasmineDOM));
+
+configure({
+  defaultImports: [
+    ReactiveFormsModule,
+    IonicModule,
+    TranslateTestingModule.withTranslations('es', defaultTranslations).withDefaultLanguage('es'),
+  ],
+});

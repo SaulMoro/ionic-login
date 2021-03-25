@@ -1,0 +1,7 @@
+.toggle--input {
+  @apply absolute block w-6 h-6 duration-200 ease-in bg-gray-400 rounded-full outline-none appearance-none cursor-pointer right-4 focus:outline-none checked:bg-primary-default checked:right-0;
+}
+
+.toggle--label {
+  @apply block h-4 mt-1 overflow-hidden bg-gray-300 rounded-full cursor-pointer;
+}

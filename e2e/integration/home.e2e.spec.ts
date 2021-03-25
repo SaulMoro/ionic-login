@@ -5,6 +5,6 @@ describe('Home', () => {
   });
 
   it('should display welcome msg', () => {
-    cy.findByText(/Start with Ionic/i);
+    cy.findByText(/acceder/i);
   });
 });

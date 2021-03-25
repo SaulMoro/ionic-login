@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, of, throwError, timer } from 'rxjs';
+import { delay, switchMap } from 'rxjs/operators';
 import { Credentials, LoginResponse, User } from '../models';
 
 export const USERS: { [id: string]: User } = {
@@ -18,9 +19,9 @@ export class AuthService {
 
     // Simulate a failed login to display the error message for the login form.
     if (!user) {
-      return throwError('Invalid credentials');
+      return timer(400).pipe(switchMap(() => throwError('Invalid credentials')));
     }
-    return of({ user, token: 'abc==' });
+    return of({ user, token: 'abc==' }).pipe(delay(600));
   }
 
   logout(): Observable<boolean> {

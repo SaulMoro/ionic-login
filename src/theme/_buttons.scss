@@ -1,0 +1,14 @@
+.btn {
+  @apply px-10 py-4 text-sm font-medium tracking-wide capitalize transition-colors duration-200 ease-in transform select-none focus:outline-none disabled:opacity-70 disabled:cursor-not-allowed;
+}
+.btn.btn-primary {
+  @apply text-primary-contrast bg-primary-default hover:bg-primary-tint focus:bg-primary-tint;
+}
+
+.btn-outline {
+  @extend .btn;
+  @apply border-2 rounded-lg;
+}
+.btn-outline.btn-primary {
+  @apply text-gray-900 border-primary-default bg-primary-contrast hover:bg-primary-tint focus:bg-primary-tint hover:text-primary-contrast focus:text-primary-contrast;
+}
