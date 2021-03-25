@@ -1,24 +1,31 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
+import { render, screen, fireEvent } from '@testing-library/angular';
 
 import { LoginToggleComponent } from './login-toggle.component';
 
 describe('LoginToggleComponent', () => {
-  let component: LoginToggleComponent;
-  let fixture: ComponentFixture<LoginToggleComponent>;
+  it('should doesnt render if empty control', async () => {
+    await render(LoginToggleComponent, {
+      componentProperties: { control: null, label: 'Recordar' },
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [LoginToggleComponent],
-    }).compileComponents();
+    const toggle = screen.queryByRole('checkbox');
+
+    expect(toggle).not.toBeInTheDocument();
   });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginToggleComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  it('should control works', async () => {
+    await render(LoginToggleComponent, {
+      componentProperties: { control: new FormControl(false), label: 'Recordar' },
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    const toggle = screen.getByRole('checkbox');
+    const label = screen.getByText('Recordar');
+
+    expect(label).toBeInTheDocument();
+    expect(toggle).not.toBeChecked();
+
+    fireEvent.click(toggle);
+    expect(toggle).toBeChecked();
   });
 });

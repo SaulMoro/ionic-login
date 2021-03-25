@@ -20,7 +20,7 @@ export class LoginContainerComponent implements OnInit {
 
   form = this.formBuilder.group({
     email: ['', [Validators.required, emailValidator]],
-    password: ['', [Validators.required, Validators.min(5)]],
+    password: ['', [Validators.required, Validators.minLength(5)]],
     remember: [false],
   });
 

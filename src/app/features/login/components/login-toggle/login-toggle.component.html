@@ -1,4 +1,7 @@
-<ion-item *ngIf="control">
-  <ion-label>{{ label }}</ion-label>
-  <ion-toggle [formControl]="control"></ion-toggle>
-</ion-item>
+<div *ngIf="control" class="flex justify-between">
+  <span class="font-medium text-gray-800">{{ label }}</span>
+  <div class="relative inline-block w-10 align-middle select-none">
+    <input type="checkbox" id="toggle" [formControl]="control" class="toggle--input" />
+    <label for="toggle" class="toggle--label"> </label>
+  </div>
+</div>

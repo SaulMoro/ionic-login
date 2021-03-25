@@ -92,7 +92,9 @@ module.exports = {
     extend: {
       opacity: ['disabled'],
       cursor: ['disabled'],
-      borderWidth: ['hover', 'group-hover'],
+      borderWidth: ['hover', 'group-hover', 'focus'],
+      backgroundColor: ['checked'],
+      inset: ['checked'],
     },
   },
   plugins: [],
