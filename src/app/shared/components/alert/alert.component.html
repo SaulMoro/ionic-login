@@ -29,14 +29,9 @@
       <span
         class="font-semibold"
         [ngClass]="{'text-blue-500': type === 'info', 'text-green-500': type === 'success','text-red-500': type === 'error'}"
+        >{{ 'ALERTS.' + (type | uppercase) | translate }}</span
       >
-        {{ 'ALERTS.' + (type | uppercase) | translate }}
-      </span>
-      <p
-        *ngFor="let message of normalizeMessages; trackBy:trackByFn"
-        class="text-sm text-gray-600"
-        [innerHTML]="message"
-      ></p>
+      <p *ngFor="let message of normalizeMessages; trackBy:trackByFn" class="text-sm text-gray-600">{{ message }}</p>
     </div>
   </div>
 </div>

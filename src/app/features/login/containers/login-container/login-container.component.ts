@@ -16,7 +16,7 @@ export class LoginContainerComponent implements OnInit {
   loading$ = this.store
     .select(AuthSelectors.selectLoading)
     .pipe(tap((loading) => (loading ? this.form.disable() : this.form.enable())));
-  error$ = this.store.select(AuthSelectors.selectError).pipe(tap(() => this.form.markAsUntouched()));
+  error$ = this.store.select(AuthSelectors.selectError);
 
   form = this.formBuilder.group({
     email: ['', [emailValidator]],

@@ -39,7 +39,7 @@
     <div class="w-full" *ngIf="showFormErrors">
       <app-alert [messages]="formErrors"></app-alert>
     </div>
-    <div class="w-full" *ngIf="form.untouched && (error$ | async) as error">
+    <div class="w-full" *ngIf="error$ | async as error">
       <app-alert type="error" [messages]="'LOGIN.ERRORS.BAD_CREDENTIALS' | translate"></app-alert>
     </div>
   </section>
