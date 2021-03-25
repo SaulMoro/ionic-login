@@ -1,0 +1,25 @@
+.login-input {
+  @apply flex items-center py-3 mb-4 space-x-4 text-gray-300 transition duration-300 border-b-2 border-gray-300 focus-within:border-gray-500 focus-within:text-gray-700;
+
+  &.login-input--invalid {
+    @apply border-danger-default focus-within:border-danger-default;
+  }
+
+  .login-input__icon {
+    @apply text-2xl font-medium hover:text-gray-500;
+  }
+
+  input {
+    @apply w-full font-medium text-gray-700 placeholder-gray-800 placeholder-opacity-50 bg-transparent appearance-none focus:outline-none;
+  }
+}
+
+/* Change Autocomplete styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: black;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset;
+  border: 0;
+  transition: background-color 5000s ease-in-out 0s;
+}

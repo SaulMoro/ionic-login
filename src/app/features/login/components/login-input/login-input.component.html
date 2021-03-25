@@ -1,9 +1,4 @@
-<div *ngIf="control">
-  <input
-    [type]="type"
-    [formControl]="control"
-    [placeholder]="label"
-    class="flex-1 w-full px-4 py-2 mb-4 text-base text-gray-700 placeholder-gray-400 transition bg-white border-b-2 border-gray-300 appearance-none border-e focus:outline-none focus:border-gray-500"
-    [ngClass]="{'border-danger-default focus:border-danger-default': control.invalid && control.touched}"
-  />
-</div>
+<label *ngIf="control" class="login-input group" [class.login-input--invalid]="control.invalid && control.touched">
+  <ion-icon *ngIf="icon" class="login-input__icon" [name]="icon"></ion-icon>
+  <input [type]="type" [formControl]="control" [placeholder]="label" />
+</label>

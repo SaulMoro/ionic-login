@@ -4,8 +4,18 @@
 
     <form class="w-full bg-white" name="loginForm" [formGroup]="form" (ngSubmit)="login(form.value)">
       <fieldset class="px-6 pt-4 pb-6">
-        <app-login-input [control]="email" [label]="'LOGIN.FIELDS.EMAIL' | translate"></app-login-input>
-        <app-login-input [control]="password" [label]="'LOGIN.FIELDS.PASSWORD' | translate"></app-login-input>
+        <app-login-input
+          icon="person-outline"
+          type="email"
+          [control]="email"
+          [label]="'LOGIN.FIELDS.EMAIL' | translate"
+        ></app-login-input>
+        <app-login-input
+          icon="lock-closed-outline"
+          type="password"
+          [control]="password"
+          [label]="'LOGIN.FIELDS.PASSWORD' | translate"
+        ></app-login-input>
         <app-login-toggle [control]="remember" [label]="'LOGIN.FIELDS.REMEMBER' | translate"></app-login-toggle>
       </fieldset>
       <button type="submit" class="w-full btn btn-primary" [disabled]="loading$ | async">

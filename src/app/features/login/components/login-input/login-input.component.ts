@@ -11,6 +11,7 @@ export class LoginInputComponent {
   @Input() control: FormControl | null = null;
   @Input() label = '';
   @Input() type = 'text';
+  @Input() icon: string | null = null;
 
   constructor() {}
 }
