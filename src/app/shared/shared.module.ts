@@ -6,8 +6,9 @@ import { IonicModule } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { AlertComponent } from './components/alert/alert.component';
 
-const EXPORTED_DECLARATIONS = [AutofocusDirective];
+const EXPORTED_DECLARATIONS = [AutofocusDirective, AlertComponent];
 
 const IMPORTED_EXPORTS = [CommonModule, FormsModule, ReactiveFormsModule, IonicModule, TranslateModule];
 

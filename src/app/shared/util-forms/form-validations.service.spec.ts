@@ -96,6 +96,42 @@ describe('FormTranslateValidationsService', () => {
     expect(errors[0]).toEqual('El campo test es obligatorio');
   });
 
+  it('should minlength validation works', () => {
+    const control: any = {
+      errors: { minlength: 'minlength', requiredLength: 5 },
+    };
+    const controls = { test: control };
+    const form: any = {
+      controls,
+      get: jasmine.createSpy().and.returnValue(controls.test),
+    };
+
+    const errors = service.getFormErrors(form);
+
+    expect(errors).toBeTruthy();
+    expect(errors.length).toBeTruthy();
+    expect(form.get).toHaveBeenCalledWith('test');
+    expect(errors[0]).toContain('El campo test debe tener al menos');
+  });
+
+  it('should email validation works', () => {
+    const control: any = {
+      errors: { email: 'email' },
+    };
+    const controls = { test: control };
+    const form: any = {
+      controls,
+      get: jasmine.createSpy().and.returnValue(controls.test),
+    };
+
+    const errors = service.getFormErrors(form);
+
+    expect(errors).toBeTruthy();
+    expect(errors.length).toBeTruthy();
+    expect(form.get).toHaveBeenCalledWith('test');
+    expect(errors[0]).toEqual('La dirección de correo electrónico no es válida');
+  });
+
   it('should getFormControlErrors translate fieldKey if exists', () => {
     const control: any = {
       errors: { required: 'required' },

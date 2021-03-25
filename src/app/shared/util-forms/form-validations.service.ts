@@ -24,8 +24,8 @@ export class FormTranslateValidationsService {
         switch (keyError) {
           case 'required':
             return this.translate.instant('VALIDATIONS.REQUIRED', { name });
-          case 'minLength':
-            return this.translate.instant('VALIDATIONS.MIN_LENGTH', { name, min: error.min });
+          case 'minlength':
+            return this.translate.instant('VALIDATIONS.MIN_LENGTH', { name, min: '' + error.requiredLength });
           case 'email':
             return this.translate.instant('VALIDATIONS.EMAIL');
           default:

@@ -16,10 +16,10 @@ export class LoginContainerComponent implements OnInit {
   loading$ = this.store
     .select(AuthSelectors.selectLoading)
     .pipe(tap((loading) => (loading ? this.form.disable() : this.form.enable())));
-  error$ = this.store.select(AuthSelectors.selectError);
+  error$ = this.store.select(AuthSelectors.selectError).pipe(tap(() => this.form.markAsUntouched()));
 
   form = this.formBuilder.group({
-    email: ['', [Validators.required, emailValidator]],
+    email: ['', [emailValidator]],
     password: ['', [Validators.required, Validators.minLength(5)]],
     remember: [false],
   });
@@ -57,5 +57,9 @@ export class LoginContainerComponent implements OnInit {
       email: 'LOGIN.FIELDS.EMAIL',
       password: 'LOGIN.FIELDS.PASSWORD',
     });
+  }
+
+  get showFormErrors(): boolean {
+    return this.email.touched && this.password.touched && !!this.formErrors.length;
   }
 }

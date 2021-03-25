@@ -26,6 +26,7 @@
     "BACKEND": "Se ha producido un problema conectando con nuestros servidores"
   },
   "ALERTS": {
+    "INFO": "Info",
     "SUCCESS": "Operación finalizada satisfactoriamente",
     "ERROR": "Error"
   }
