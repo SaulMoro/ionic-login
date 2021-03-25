@@ -24,5 +24,9 @@
     "SUCCESS": "Operación finalizada satisfactoriamente",
     "RETRY": "Si este problema persiste, vuelva a intentarlo más tarde o ponte en contacto con nosotros",
     "BACKEND": "Se ha producido un problema conectando con nuestros servidores"
+  },
+  "ALERTS": {
+    "SUCCESS": "Operación finalizada satisfactoriamente",
+    "ERROR": "Error"
   }
 }
