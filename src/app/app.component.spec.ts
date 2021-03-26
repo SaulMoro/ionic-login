@@ -21,20 +21,6 @@ describe('Applicaton smoke test', () => {
 
     expect(canNavigate).toBe(true);
   });
-
-  it('navigation home works', async () => {
-    const { router, run } = setup();
-    const canNavigate = await run(() => router.navigateByUrl('/home'));
-
-    expect(canNavigate).toBe(true);
-  });
-
-  it('navigation login works', async () => {
-    const { router, run } = setup();
-    const canNavigate = await run(() => router.navigateByUrl('/login'));
-
-    expect(canNavigate).toBe(true);
-  });
 });
 
 const setup = () => {

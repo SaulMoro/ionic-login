@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { catchError, map, exhaustMap, switchMap, tap } from 'rxjs/operators';
 
 import * as AuthActions from './auth.actions';
+import { AUTH_FEATURE_KEY } from './auth.reducer';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
@@ -34,7 +35,7 @@ export class AuthEffects {
     () =>
       this.actions$.pipe(
         ofType(AuthActions.logout),
-        exhaustMap(() => this.authService.logout()),
+        exhaustMap(() => this.authService.logout().pipe(tap(() => localStorage.removeItem(`IL_${AUTH_FEATURE_KEY}`)))),
       ),
     { dispatch: false },
   );

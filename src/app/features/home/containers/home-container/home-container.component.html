@@ -1,18 +1,23 @@
 <ion-header translucent>
   <ion-toolbar>
-    <ion-title> Blank </ion-title>
+    <ion-title> {{ 'HOME.TITLE' | translate }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">{{ 'HOME.TITLE' | translate }}</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic</p>
-  </div>
+  <section class="container h-full p-4 mx-auto space-y-4">
+    <h1 class="text-lg font-bold text-primary-shade">{{ 'HOME.USER_DATA' | translate }}</h1>
+    <p>{{ 'HOME.REMEMBER_INFO' | translate }}</p>
+    <pre class="p-2 bg-gray-300">{{ user$ | async | json }}</pre>
+
+    <button class="mx-auto btn btn-primary" type="button" (click)="logout()">
+      {{ 'HOME.BUTTONS.LOGOUT' | translate }}
+    </button>
+  </section>
 </ion-content>

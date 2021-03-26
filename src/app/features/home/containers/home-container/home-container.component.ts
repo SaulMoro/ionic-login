@@ -1,4 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { AuthActions, AuthSelectors } from '@app/core/auth';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-home-container',
@@ -7,5 +9,11 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeContainerComponent {
-  constructor() {}
+  user$ = this.store.select(AuthSelectors.selectUser);
+
+  constructor(private store: Store) {}
+
+  logout(): void {
+    this.store.dispatch(AuthActions.logout());
+  }
 }
