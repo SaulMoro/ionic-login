@@ -1,15 +1,6 @@
 describe('Login', () => {
   beforeEach(() => {
-    cy.restoreLocalStorage();
     cy.visit('/');
-  });
-
-  afterEach(() => {
-    cy.saveLocalStorage();
-  });
-
-  it('Should auth localstorage be null first time page is visited', () => {
-    cy.getLocalStorage('IL_auth').should('equal', null);
   });
 
   it('Should display login form', () => {

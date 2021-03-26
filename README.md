@@ -2,6 +2,8 @@
 
 PoC Ionic Login
 
+[Demo of project](https://poc-ionic-login.firebaseapp.com/)
+
 ## Login Demo Data
 
 Client User: `email:test@test.com | pass:(any password)`
