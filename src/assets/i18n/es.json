@@ -15,6 +15,14 @@
       "BAD_CREDENTIALS": "Las credenciales introducidas no son correctas"
     }
   },
+  "HOME": {
+    "TITLE": "Inicio",
+    "USER_DATA": "Datos de usuario",
+    "REMEMBER_INFO": "Recuerda que si has marcado \"Recordar\", al volver a entrar no deberás de volver a hacer login.",
+    "BUTTONS": {
+      "LOGOUT": "Cerrar sesión"
+    }
+  },
   "VALIDATIONS": {
     "REQUIRED": "El campo {{name}} es obligatorio",
     "MIN_LENGTH": "El campo {{name}} debe tener al menos {{min}} caracteres",
