@@ -7,7 +7,7 @@ import { ɵDomSharedStylesHost } from '@angular/platform-browser';
 import JasmineDOM from '@testing-library/jasmine-dom/dist';
 import { configure } from '@testing-library/angular';
 import { TranslateTestingModule } from 'ngx-translate-testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import defaultTranslations from 'src/assets/i18n/es.json';
 
@@ -38,6 +38,7 @@ beforeAll(() => jasmine.getEnv().addMatchers(JasmineDOM));
 
 configure({
   defaultImports: [
+    FormsModule,
     ReactiveFormsModule,
     IonicModule,
     TranslateTestingModule.withTranslations('es', defaultTranslations).withDefaultLanguage('es'),

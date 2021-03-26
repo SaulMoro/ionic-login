@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { render, screen, fireEvent, waitFor } from '@testing-library/angular';
+import { render, screen, fireEvent } from '@testing-library/angular';
 import userEvent from '@testing-library/user-event';
 
 import { AuthActions, AuthEffects, AuthSelectors } from '@app/core/auth';
@@ -50,38 +50,35 @@ describe('LoginContainerComponent', () => {
       ],
     });
 
-    const email = screen.getByPlaceholderText('Email');
-    const password = screen.getByPlaceholderText('Contraseña');
-    const button = screen.getByRole('button', { name: /Acceder/i });
+    const email = screen.getByPlaceholderText(/email/i);
+    const password = screen.getByPlaceholderText(/contraseña/i);
+    const button = screen.getByRole('button', { name: /acceder/i });
     const toggle = screen.getByRole('checkbox');
 
-    expect(screen.queryByText('Info')).not.toBeInTheDocument();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     expect(email).toHaveValue('');
     expect(password).toHaveValue('');
     expect(toggle).not.toBeChecked();
     expect(button).not.toBeDisabled();
 
+    userEvent.click(email);
     userEvent.type(email, 'Test');
-    fireEvent.blur(email); // Mark as touched
-    expect(email).not.toBeValid();
+    userEvent.click(password);
+    userEvent.type(password, 'pass');
+    fireEvent.blur(password);
+    fireEvent.click(button);
 
-    userEvent.type(password, 'Test');
-    fireEvent.blur(password); // Mark as touched
-    expect(email).not.toBeValid();
+    await screen.findByText(/^la direcci/i);
+    screen.getByText(/^el campo/i);
 
-    const validationErrors = screen.getByRole('alert');
-    expect(validationErrors).toContainElement(screen.queryByText('La dirección de correo electrónico no es válida'));
-    expect(validationErrors).toContainElement(
-      screen.queryByText('El campo Contraseña debe tener al menos 5 caracteres'),
-    );
-
+    fireEvent.change(email, { target: { value: '' } });
     userEvent.type(email, 'test@test.com');
-    expect(validationErrors).not.toContainElement(
-      screen.queryByText('La dirección de correo electrónico no es válida'),
-    );
-
+    fireEvent.change(password, { target: { value: '' } });
     userEvent.type(password, 'testpassword');
-    expect(validationErrors).not.toBeInTheDocument();
+    userEvent.click(button);
+
+    expect(screen.queryByText(/^la direcci/i)).not.toBeInTheDocument();
+    expect(screen.queryByText(/^el campo/i)).not.toBeInTheDocument();
   });
 
   it('should if possible to login', async () => {
@@ -102,27 +99,27 @@ describe('LoginContainerComponent', () => {
     const store = TestBed.inject(MockStore);
     store.dispatch = jasmine.createSpy();
 
-    const email = screen.getByPlaceholderText('Email');
-    const password = screen.getByPlaceholderText('Contraseña');
-    const button = screen.getByRole('button', { name: /Acceder/i });
+    const email = screen.getByPlaceholderText(/email/i);
+    const password = screen.getByPlaceholderText(/contraseña/i);
+    const button = screen.getByRole('button', { name: /acceder/i });
     const toggle = screen.getByRole('checkbox');
-    const errors = screen.queryByText('Error');
-    const infoErrors = screen.queryByText('Info');
+    const infoErrors = screen.queryByRole('alert');
 
-    expect(errors).not.toBeInTheDocument();
     expect(infoErrors).not.toBeInTheDocument();
     expect(email).toHaveValue('');
     expect(password).toHaveValue('');
     expect(toggle).not.toBeChecked();
     expect(button).not.toBeDisabled();
 
+    userEvent.click(email);
     userEvent.type(email, credentials.email);
+    userEvent.click(password);
     userEvent.type(password, credentials.password);
+    fireEvent.blur(password);
     expect(email).toHaveValue(credentials.email);
     expect(email).toBeValid();
     expect(password).toHaveValue(credentials.password);
     expect(password).toBeValid();
-    expect(errors).not.toBeInTheDocument();
     expect(infoErrors).not.toBeInTheDocument();
 
     userEvent.click(button);
@@ -132,44 +129,48 @@ describe('LoginContainerComponent', () => {
 
     userEvent.click(toggle);
     expect(toggle).toBeChecked();
+
     userEvent.click(button);
     expect(store.dispatch).toHaveBeenCalledWith(AuthActions.login({ credentials: { ...credentials, remember: true } }));
   });
 
-  it('should if possible to login with store integration', async (done) => {
+  it('should if possible to login with store integration', async () => {
     const credentials = { email: 'test@test.com', password: 'testpassword' };
-    const router = jasmine.createSpyObj('Router', ['navigate']);
+    const mockRouter = {
+      navigate: jasmine.createSpy('navigate'),
+    };
 
     await render(LoginContainerComponent, {
       declarations: [LoginButtonComponent, LoginInputComponent, LoginToggleComponent, AlertComponent],
       imports: [StoreModule.forRoot(reducers), EffectsModule.forRoot([AuthEffects])],
-      providers: [AuthEffects, AuthService, { provide: Router, useValue: router }],
+      providers: [AuthEffects, AuthService, { provide: Router, useValue: mockRouter }],
     });
 
-    const email = screen.getByPlaceholderText('Email');
-    const password = screen.getByPlaceholderText('Contraseña');
-    const button = screen.getByRole('button', { name: /Acceder/i });
+    const email = screen.getByPlaceholderText(/email/i);
+    const password = screen.getByPlaceholderText(/contraseña/i);
+    const button = screen.getByRole('button', { name: /acceder/i });
+    const toggle = screen.getByRole('checkbox');
 
-    expect(screen.queryByText('Error')).not.toBeInTheDocument();
+    expect(email).toHaveValue('');
+    expect(password).toHaveValue('');
+    expect(toggle).not.toBeChecked();
+    expect(button).not.toBeDisabled();
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument();
 
-    userEvent.clear(email);
+    userEvent.click(email);
     userEvent.type(email, 'prueba@prueba.com');
-    userEvent.clear(password);
+    userEvent.click(password);
     userEvent.type(password, 'pruebapassword');
+    fireEvent.blur(password);
     userEvent.click(button);
-    expect(button).toBeDisabled();
-    await waitFor(() => expect(screen.getByText('Error')));
+    const error = await screen.findByRole('alert');
 
-    userEvent.clear(email);
+    fireEvent.change(email, { target: { value: '' } });
     userEvent.type(email, credentials.email);
-    userEvent.clear(password);
+    fireEvent.change(password, { target: { value: '' } });
     userEvent.type(password, credentials.password);
     userEvent.click(button);
-    expect(button).toBeDisabled();
 
-    setTimeout(() => {
-      expect(router.navigate).toHaveBeenCalledWith(['/']);
-      done();
-    }, 1000);
+    expect(error).not.toBeInTheDocument();
   });
 });
