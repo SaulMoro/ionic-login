@@ -69,6 +69,7 @@
     "@typescript-eslint/eslint-plugin": "4.19.0",
     "@typescript-eslint/parser": "4.19.0",
     "cypress": "6.8.0",
+    "cypress-localstorage-commands": "^1.4.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
