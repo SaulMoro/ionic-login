@@ -19,6 +19,7 @@ export class AuthTokenInterceptor implements HttpInterceptor {
 
         return next.handle(authReq).pipe(
           catchError((err: unknown) => {
+            console.log('PASANDOOOO', err);
             if ((err as HttpErrorResponse).status === 401 || (err as HttpErrorResponse).status === 403) {
               this.store.dispatch(unauthorized());
             }
