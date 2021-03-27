@@ -21,6 +21,7 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@app/*": ["src/app/*"],
+      "@app/test-helpers": ["src/test-helpers.ts"],
       "@environments/*": ["src/environments/*"]
     }
   },

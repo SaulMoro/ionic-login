@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
-import { AppModule } from './app.module';
+import { routes } from './app-routing.module';
+import { CoreStoreModule } from './core/core.state';
 
 describe('Applicaton smoke test', () => {
   it('the application boots up', () => {
@@ -17,15 +18,40 @@ describe('Applicaton smoke test', () => {
 
   it('navigation works', async () => {
     const { router, run } = setup();
+
     const canNavigate = await run(() => router.navigateByUrl('/'));
 
     expect(canNavigate).toBe(true);
+  });
+
+  it('navigation login works', async () => {
+    const { router, run } = setup();
+
+    const canNavigateLogin = await run(() => router.navigateByUrl('/login'));
+
+    expect(canNavigateLogin).toBe(true);
+  });
+
+  it('navigation home works', async () => {
+    const { router, run } = setup();
+
+    const canNavigateLogin = await run(() => router.navigateByUrl('/home'));
+
+    expect(canNavigateLogin).toBe(true);
+  });
+
+  it('navigation unknown route doesnt works', async () => {
+    const { router, run } = setup();
+
+    await run(() => router.navigateByUrl('/not-exists')).catch((error) =>
+      expect(error).toMatch(/Cannot match any routes/i),
+    );
   });
 });
 
 const setup = () => {
   TestBed.configureTestingModule({
-    imports: [AppModule, RouterTestingModule],
+    imports: [RouterTestingModule.withRoutes(routes), CoreStoreModule],
   }).compileComponents();
 
   let rootFixture: ComponentFixture<AppComponent>;
