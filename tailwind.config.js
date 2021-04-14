@@ -1,8 +1,8 @@
+process.env.TAILWIND_MODE = isProductionMode() ? 'build' : 'watch';
+
 module.exports = {
-  purge: {
-    enabled: process.env.WEBPACK_DEV_SERVER === 'true' && process.argv.join(' ').indexOf('build') !== -1,
-    content: ['./src/**/*.{html,ts}'],
-  },
+  mode: 'jit',
+  purge: ['./src/**/*.{html,ts,scss}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
@@ -89,13 +89,13 @@ module.exports = {
     },
   },
   variants: {
-    extend: {
-      opacity: ['disabled'],
-      cursor: ['disabled'],
-      borderWidth: ['hover', 'group-hover'],
-      backgroundColor: ['checked'],
-      inset: ['checked'],
-    },
+    extend: {},
   },
   plugins: [],
 };
+
+function isProductionMode() {
+  const argv = process.argv.join(' ').toLowerCase();
+  const isProdEnv = process.env.NODE_ENV === 'production';
+  return isProdEnv || [' build', ':build', 'ng b', '--prod'].some((command) => argv.includes(command));
+}
