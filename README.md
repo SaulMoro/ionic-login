@@ -34,7 +34,7 @@ Entendemos que la primera versión era una prueba de concepto con motivos de pre
 - **Lazy Loading Features**
 - **Container / Presentational Components** (Smart / Dumb Components)
 - **Strict mode** Angular & Typescript
-- **TailwindCSS** (supported natively on Angular 11.2) for fast mockup
+- **TailwindCSS JIT** (supported natively on Angular 11.2) for fast mockup
 - **Performance** with the use of trackBy, Componentes OnPush, Intersection Observer, Virtual Scrolling, Lazy images, ...
 - **i18n**
 
